@@ -18,7 +18,9 @@ public class DataHandler {
 	public static String preprocessFolder="./resources/preprocess/";
 	public static int threshold=500;
 	public static int btreeOrder=100;
-	public static int bufferedTreeNumber=20;
+	public static int bufferedTreeNumber=80;
+	
+	
 
 	//sort ascendly the MyRecord ArrayList by record names
 	public static void sortMyRecord(ArrayList<MyRecord> myrecord){
@@ -70,7 +72,7 @@ public class DataHandler {
 			File file=new File(fileList.get(i));
 			try {
 				br = new BufferedReader(new FileReader(file));
-				br.readLine();//discard the 1st line of csv file
+				//br.readLine();//discard the 1st line of csv file
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -79,6 +81,7 @@ public class DataHandler {
 				File splitFile=new File(DataHandler.preprocessFolder+Integer.toString(fileTag)+"_"+Integer.toString(i)+".txt");
 				bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(splitFile)));
 				while ((line = br.readLine()) != null ){
+					
 					bw.write(line);
 					bw.write("\r\n");
 					lineCnt++;
@@ -147,13 +150,9 @@ public class DataHandler {
 		}
 		return result;
 	}
+	
 
-	public static ArrayList<Btree> bufferTrees(){
-		ArrayList<Btree> treeList=new ArrayList<Btree>(bufferedTreeNumber);
-		for(int i=0;i<bufferedTreeNumber;i++){
-			
-		}
-		return treeList; 
-	}
+
+
 
 }
